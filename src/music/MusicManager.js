@@ -242,11 +242,11 @@ class GuildMusicSession {
     }
 
     try {
-      this.connection.subscribe(this.player);
-
       if (this.connection.state.status !== VoiceConnectionStatus.Ready) {
         await entersState(this.connection, VoiceConnectionStatus.Ready, 20_000);
       }
+
+      this.connection.subscribe(this.player);
 
       await this.updateEmptyChannelState(voiceChannel);
     } catch (error) {
